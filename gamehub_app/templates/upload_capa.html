@@ -1,0 +1,20 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br" class="bg-black text-white">
+<head>
+    <meta charset="UTF-8">
+    <title>Upload de Capa</title>
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-black via-gray-900 to-red-900 px-4 py-12">
+    <h1 class="text-3xl font-bold mb-6 text-red-400">Upload de capa pra <span class="text-white">{{ jogo }}</span></h1>
+
+    <form method="POST" enctype="multipart/form-data" class="bg-gray-800 p-6 rounded-xl shadow-md">
+        {% csrf_token %}
+        <input type="file" name="capa" accept="image/*" class="block mb-4 text-white">
+        <button type="submit" class="bg-red-600 hover:bg-red-700 px-4 py-2 rounded text-white font-bold">Enviar Capa</button>
+    </form>
+
+    <a href="/" class="mt-6 text-sm text-gray-300 hover:text-white">⬅ Voltar pro início</a>
+</body>
+</html>

@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>GameHub do Caba</title>
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+</head>
+<body class="min-h-screen flex flex-col justify-center items-center bg-gradient-to-br from-black via-gray-900 to-red-900 text-white font-sans">
+
+    <h1 class="text-5xl font-bold bg-gradient-to-r from-red-500 to-purple-600 text-transparent bg-clip-text drop-shadow-xl mb-4">
+        🎮 GameHub do Jaminho
+    </h1>
+
+    <p class="text-gray-300 text-lg mb-8 text-center">
+        Gerencie sua coleção de joguin num site mais bonito que a Steam
+    </p>
+
+    <!-- LINK CORRIGIDO SEM ESPAÇO FDP -->
+    <a href="{% url 'listar_jogos' %}"
+       class="px-8 py-3 bg-red-700 hover:bg-red-800 text-white font-semibold rounded-full shadow-lg transition-all duration-300">
+        👉 Listar Jogos
+    </a>
+
+</body>
+</html>
