@@ -1,4 +1,5 @@
 {% load static %}
+{% get_static_prefix as STATIC_PREFIX %}
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -6,21 +7,31 @@
     <title>GameHub do Caba</title>
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
 </head>
-<body class="min-h-screen flex flex-col justify-center items-center bg-gradient-to-br from-black via-gray-900 to-red-900 text-white font-sans">
+<body class="min-h-screen flex flex-col justify-center items-center text-white font-sans relative overflow-hidden"
+      style="background: linear-gradient(to bottom right, rgba(0,0,0,0.9), rgba(17,24,39,0.9), rgba(127,29,29,0.8)), url('{{ STATIC_PREFIX }}img/bg.png'); background-size: cover; background-position: center; background-repeat: no-repeat;">
 
-    <h1 class="text-5xl font-bold bg-gradient-to-r from-red-500 to-purple-600 text-transparent bg-clip-text drop-shadow-xl mb-4">
-        🎮 GameHub do Jaminho
-    </h1>
+    <!-- Conteúdo principal -->
+    <div class="z-10 flex flex-col items-center text-center px-4 py-10">
 
-    <p class="text-gray-300 text-lg mb-8 text-center">
-        Gerencie sua coleção de joguin num site mais bonito que a Steam
-    </p>
+        <!-- LOGO -->
+        <img src="{% static 'img/logo.png' %}" alt="Logo GameHub" class="w-32 h-32 mb-6 drop-shadow-xl">
 
-    <!-- LINK CORRIGIDO SEM ESPAÇO FDP -->
-    <a href="{% url 'listar_jogos' %}"
-       class="px-8 py-3 bg-red-700 hover:bg-red-800 text-white font-semibold rounded-full shadow-lg transition-all duration-300">
-        👉 Listar Jogos
-    </a>
+        <!-- TÍTULO -->
+        <h1 class="text-5xl font-bold bg-gradient-to-r from-red-500 to-purple-600 text-transparent bg-clip-text drop-shadow-xl mb-4">
+            🎮 GameHub
+        </h1>
+
+        <!-- DESCRIÇÃO -->
+        <p class="text-gray-300 text-lg mb-6 max-w-xl">
+            Gerencie sua coleção de jogos num site mais bonito que a Steam, com capinhas direto da IGDB, suporte a múltiplas plataformas e aquele toque especial.
+        </p>
+
+        <!-- BOTÃO -->
+        <a href="{% url 'listar_jogos' %}"
+           class="px-8 py-3 bg-red-700 hover:bg-red-800 text-white font-semibold rounded-full shadow-lg transition-all duration-300">
+            👉 Listar Jogos
+        </a>
+    </div>
 
 </body>
 </html>

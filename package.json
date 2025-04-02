@@ -1,14 +1,14 @@
 {
   "name": "gamehub",
   "version": "1.0.0",
+  "description": "Projeto GameHub com Tailwind",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tailwindcss -i ./gamehub_app/static/css/tailwind.css -o ./gamehub_app/static/css/style.css --watch"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
+  "author": "Jaminho",
+  "license": "MIT",
   "devDependencies": {
     "autoprefixer": "^10.4.21",
     "postcss": "^8.5.3",

@@ -5,6 +5,7 @@ import requests
 from PIL import Image
 from io import BytesIO
 import unicodedata
+import re
 
 def index(request):
     return render(request, 'index.html')
@@ -14,7 +15,13 @@ def normaliza_nome(nome):
     nome = unicodedata.normalize('NFKD', nome).encode('ASCII', 'ignore').decode()
     return nome.lower().replace(' ', '_')
 
-def get_igdb_cover(game_name):
+def limpar_nome_jogo(nome):
+    # Remove parênteses e tudo dentro
+    nome = re.sub(r'\(.*?\)', '', nome)
+    return nome.strip()
+
+def get_igdb_cover(game_name, platform_id):
+    game_name = limpar_nome_jogo(game_name)
     covers_dir = os.path.join('gamehub_app', 'static', 'covers')
     os.makedirs(covers_dir, exist_ok=True)
 
@@ -41,8 +48,12 @@ def get_igdb_cover(game_name):
             'Authorization': f'Bearer {access_token}',
         }
 
-        game_name_clean = os.path.splitext(game_name)[0]
-        data = f'search "{game_name_clean}"; fields name, cover.image_id; limit 1;'
+        data = f'''
+            search "{game_name}";
+            fields name, cover.image_id;
+            where platforms = ({platform_id});
+            limit 1;
+        '''
 
         response = requests.post('https://api.igdb.com/v4/games', headers=headers, data=data)
         response_data = response.json()
@@ -63,6 +74,8 @@ def get_igdb_cover(game_name):
 def listar_jogos(request):
     if request.method == 'POST':
         pasta = request.POST.get('pasta')
+        platform_id = request.POST.get('platform', '7')  # padrão: PS1
+
         if not pasta or not os.path.exists(pasta):
             return HttpResponse("Caminho inválido, bicho!")
 
@@ -71,7 +84,7 @@ def listar_jogos(request):
 
         for jogo in jogos:
             nome = os.path.splitext(jogo)[0]
-            capa = get_igdb_cover(nome)
+            capa = get_igdb_cover(nome, platform_id)
             jogos_com_capa.append({
                 'nome': nome,
                 'capa': capa

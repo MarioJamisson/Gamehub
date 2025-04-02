@@ -11,8 +11,28 @@
     <form method="POST" class="bg-black bg-opacity-30 p-8 rounded-xl shadow-xl w-[90%] max-w-md">
         {% csrf_token %}
         <h1 class="text-2xl font-bold mb-6 text-center text-white">🗂️ Escolhe a pasta dos joguin aí</h1>
+
         <input type="text" name="pasta" placeholder="C:\\caminho\\pra\\pasta"
             class="w-full p-3 rounded bg-gray-800 text-white placeholder-gray-400 mb-4 focus:outline-none focus:ring-2 focus:ring-red-500">
+
+        <select name="platform" class="w-full p-3 rounded bg-gray-800 text-white mb-4 focus:outline-none focus:ring-2 focus:ring-red-500">
+            <option value="7">PlayStation 1</option>
+            <option value="8">PlayStation 2</option>
+            <option value="9">PlayStation 3</option>
+            <option value="48">PlayStation 4</option>
+            <option value="167">PlayStation 5</option>
+            <option value="11">Xbox</option>
+            <option value="12">Xbox 360</option>
+            <option value="49">Xbox One</option>
+            <option value="169">Xbox Series X</option>
+            <option value="4">Nintendo 64</option>
+            <option value="21">GameCube</option>
+            <option value="5">Wii</option>
+            <option value="41">Wii U</option>
+            <option value="130">Nintendo Switch</option>
+            <option value="6">PC</option>
+        </select>
+
         <button type="submit"
             class="w-full bg-red-700 hover:bg-red-800 py-2 rounded text-white font-semibold transition">
             Listar Jogos
